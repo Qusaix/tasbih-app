@@ -1,11 +1,15 @@
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import {createAppContainer } from "react-navigation";
 import Main from "../compnents/Main.js"
-import HomeStack from "./stack";
+import HomeStack from "./stack.js";
+import About from './aboutstack.js'
 
 const RootDrawerNavgator = createDrawerNavigator({
-    Home:{
+    App:{
         screen:HomeStack
+    },
+    About:{
+        screen:About
     }
 })
 

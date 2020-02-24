@@ -2,7 +2,7 @@ import React from "react";
 import {Text,View,StyleSheet} from "react-native";
 import {MaterialIcons}from "@expo/vector-icons";
 
-export default function Header({navigation}){
+export default function Header({navigation,tiltle}){
     const open_drawer = ()=>{
     return navigation.openDrawer();
 
@@ -11,7 +11,8 @@ export default function Header({navigation}){
         <View style={style.header}>
             <MaterialIcons name="menu"  onPress={open_drawer} size={28}/>
             <View>
-                <Text style={style.headerText}>Title</Text>
+
+            <Text style={style.headerText}>{tiltle}</Text>
             </View>
         </View>
     )
