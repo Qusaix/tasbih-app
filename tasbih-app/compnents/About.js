@@ -1,6 +1,8 @@
 import React from "react";
 import {Text,StyleSheet,View} from "react-native";
 import Header from "../shared/header.js";
+import { SocialIcon } from 'react-native-elements'
+
 
 class About extends React.Component
 {
@@ -14,13 +16,20 @@ class About extends React.Component
 
     render(){
         return(
-            <View>
-                <View>
-                    <Text>
-                        This About Us Page
-                    </Text>
+            <View style={style.container}>
+                  <Text>
+                        This App Created by Israra Team 
 
-                </View>
+                    </Text>
+                  
+                    <Text>
+                    You Can Fallow Us On Facebook To See Our Lates Apps 
+                    </Text>
+                    <SocialIcon type='facebook' /> 
+                    <Text>@israrTeam</Text>
+
+
+
             </View>
         )
     }
@@ -39,4 +48,7 @@ const style = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
       },
+      social: {
+          flexDirection:"row",
+      }
 })
