@@ -34,7 +34,7 @@ const locale = NativeModules.I18nManager.localeIdentifier
   i18n.locale = chosen_lang;
   i18n.fallbacks = true;
   
-   
+
   i18n.translations = {en,ar};
 
 

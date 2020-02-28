@@ -11,7 +11,7 @@ import i18n from 'i18n-js';
 const locale = NativeModules.I18nManager.localeIdentifier 
 
   const en = {
-    title:"TAs"
+    title:"TasBish"
   };
 
   const ar = {
