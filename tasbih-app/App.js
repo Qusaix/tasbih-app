@@ -6,6 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import Navgator from "./routes/drawer.js"
 import Stack from "./routes/stack.js";
 
+
 export default class App extends React.Component{
 
   constructor(){
@@ -39,7 +40,7 @@ export default class App extends React.Component{
 
     return (
 
-       <Navgator />
+       <Navgator  />
 
    
      );
