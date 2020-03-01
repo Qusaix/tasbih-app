@@ -43,6 +43,7 @@ class Main extends React.Component
 
          
       };
+      this.know_language();
    }
 
    count_tasbih = ()=>{
@@ -53,7 +54,6 @@ class Main extends React.Component
        // Adding the Round Count Number 
        this.setState({'round':this.state.round + 1});
 
-      console.log(this.state.round)
         // Adding the Amount Of Rounds 
        if(this.state.round === 100)
        {
@@ -112,26 +112,7 @@ class Main extends React.Component
 
    }
 
-   UNSAFE_componentWillMount = async ()=>{
-
-      //Know The Language 
-      var lang_name = []; 
-
-      for(var i=0;i<locale.length;i++)
-      {
-           if(i < 2 )
-           {
-               lang_name.push(locale[i]);
-           }
-      }
-     let chosen_lang =  lang_name.join("")
-
-      i18n.locale = chosen_lang;
-      i18n.fallbacks = true;
-
-      i18n.translations = {en,ar};
-      //End
-
+   componentDidMount = async ()=>{
       // Get The User Data
      try{
       let count = await AsyncStorage.getItem("UserCount");
@@ -146,8 +127,9 @@ class Main extends React.Component
       {
          this.setState({'tasbih':0});
 
-      }else if(typeof parseInt(round) !== "number")
+      }else if( round == "NaN" )
       {
+
          this.setState({'roundNumber':0});
 
       }else if(typeof parseInt(roundCount) !== "number")
@@ -158,6 +140,30 @@ class Main extends React.Component
      }catch(err){
       Alert(err)
      }
+
+
+
+   }
+   //Know The User Language 
+   know_language = ()=>{
+     var lang_name = []; 
+
+     for(var i=0;i<locale.length;i++)
+     {
+          if(i < 2 )
+          {
+              lang_name.push(locale[i]);
+          }
+     }
+    let chosen_lang =  lang_name.join("")
+
+     i18n.locale = chosen_lang;
+     i18n.fallbacks = true;
+
+     i18n.translations = {en,ar};
+     //End
+
+
    }
 
    // If There Is Any Error In ADMobile
@@ -174,6 +180,7 @@ class Main extends React.Component
             {/* <Header /> */}
             <Text style={style.count_tasbih_style}>{this.state.tasbih}</Text>
 
+            {/*Round Number Circle Bar*/}
             <View style={style.ProgressBar}>
                   <ProgressCircle
                      percent={this.state.round}
@@ -183,10 +190,12 @@ class Main extends React.Component
                      shadowColor="#999"
                      bgColor="#fff"
                   >
-                     <Text size={15}>{i18n.t('Round')}:</Text>
+                     <Text size={15}>{i18n.t("Round")}:</Text>
                     <Text style={{ fontSize: 18 }}>{this.state.roundNumber}</Text>
                   </ProgressCircle>
             </View>
+
+            {/*The Date Circle Bar*/}
             <View style={style.ProgressBar2}>
             <ProgressCircle
                      percent={100}
@@ -196,11 +205,13 @@ class Main extends React.Component
                      shadowColor="#999"
                      bgColor="#fff"
                   >
-                     <Text size={15}>{i18n.t('Day')}:</Text>
+                     <Text size={15}>{i18n.t('Day')}</Text>
                     <Text style={{ fontSize: 30 }}>{Day.getDate()}</Text>
                   </ProgressCircle>
 
             </View>
+
+            {/* The Main Functionally Of The App */}
            <View style={style.main_contaner}>
 
 
@@ -277,7 +288,6 @@ const style = StyleSheet.create({
    },
    other_buttons:{
       padding:15,
-     // backgroundColor:'#a68b56',
       borderRadius:15,
       marginTop:60+"%",
       margin:10,

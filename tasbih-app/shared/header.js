@@ -10,8 +10,8 @@ export default function Header({navigation,tiltle}){
     return(
         <View style={style.header}>
             <MaterialIcons name="menu"  onPress={open_drawer} size={28}/>
-            <View>
 
+            <View>
             <Text style={style.headerText}>{tiltle}</Text>
             </View>
         </View>
@@ -20,11 +20,11 @@ export default function Header({navigation,tiltle}){
 
 const style = StyleSheet.create({
     header:{
-        width:'100%',
         height:'100%',
+        width:100+"%",
         flexDirection:"row",
-        justifyContent:"center",
         alignItems:"center",
+       // backgroundColor:"red",
 
 
     },
@@ -33,5 +33,5 @@ const style = StyleSheet.create({
         fontSize:20,
         color:"#333",
         letterSpacing:1,
-    }
+    },
 })
