@@ -3,15 +3,16 @@ import { createDrawerNavigator } from 'react-navigation-drawer';
 import {createAppContainer } from "react-navigation";
 import Main from "../compnents/Main.js"
 import HomeStack from "./stack.js";
-import About from './aboutstack.js'
+import About from './aboutstack.js';
+import SettingsStack from "./settingsStack";
 import {Ionicons , AntDesign , Entypo} from "@expo/vector-icons";
 
 import * as Localization from 'expo-localization';
 import i18n from 'i18n-js';
 
 i18n.translations = {
-  en: { appName: 'TASBIH', about:'About US'},
-  ar: { appName: 'تسبيح' , about:"من نحن" },
+  en: { appName: 'TASBIH', about:'About US', setting:"Settings"},
+  ar: { appName: 'تسبيح' , about:"من نحن",  setting:"الاعدادات"},
 };
 
 i18n.locale = Localization.locale;
@@ -31,6 +32,18 @@ const RootDrawerNavgator = createDrawerNavigator({
           },
   
     },
+     Settings:{
+      screen:SettingsStack,
+      navigationOptions:{
+        title:i18n.t('setting'),
+        drawerIcon:(
+          <AntDesign
+          name="setting"
+          size={24}
+          />
+        )
+      }
+    },
     About:{
         screen:About,
         navigationOptions:{
@@ -42,7 +55,7 @@ const RootDrawerNavgator = createDrawerNavigator({
                 />
             )
         }
-    }
+    },
 })
 
 

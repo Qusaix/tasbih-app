@@ -13,7 +13,12 @@ import {
    PublisherBanner,
    AdMobRewarded
  } from 'expo-ads-admob';
- 
+ //Redux
+ import {connect} from "react-redux";
+
+
+
+
 const locale = NativeModules.I18nManager.localeIdentifier 
 
 const en = {
@@ -61,10 +66,10 @@ class Main extends React.Component
          this.setState({'round':0});
 
          // Add Round Number 
-         this.setState({'roundNumber':this.state.roundNumber+1});
+        this.props.addRounds();
 
          // Save The Round Number 
-         AsyncStorage.setItem('RoundCount',this.state.roundNumber.toString());
+         AsyncStorage.setItem('RoundCount',this.props.round.toString());
 
          // Vibrate The Phone After The Round Added
          Vibration.vibrate(1000);
@@ -116,12 +121,13 @@ class Main extends React.Component
       // Get The User Data
      try{
       let count = await AsyncStorage.getItem("UserCount");
-      let round = await AsyncStorage.getItem('RoundCount');
+      let round = await AsyncStorage.getItem('RoundCount'); 
       let roundCount = await AsyncStorage.getItem('RounCounts');
 
       this.setState({'tasbih':parseInt(count)});
-      this.setState({'roundNumber':parseInt(round)});
       this.setState({'round':parseInt(roundCount)});
+
+      this.props.knowThePrev();
 
       if(typeof parseInt(count) !== "number")
       {
@@ -141,6 +147,7 @@ class Main extends React.Component
       Alert(err)
      }
 
+     this.know_language();
 
 
    }
@@ -191,7 +198,7 @@ class Main extends React.Component
                      bgColor="#fff"
                   >
                      <Text size={15}>{i18n.t("Round")}:</Text>
-                    <Text style={{ fontSize: 18 }}>{this.state.roundNumber}</Text>
+                    <Text style={{ fontSize: 18 }}>{this.props.round}</Text>
                   </ProgressCircle>
             </View>
 
@@ -246,8 +253,24 @@ class Main extends React.Component
       )
    }
 }
+function mapStateToProps(state)
+{
+   return{
+      round:state.round,
+      pray:state.pray,
+   }
+}
 
-export default Main;
+function mapDispatchToProps(dispatch)
+{
+   return{
+      knowThePray:()=>dispatch({"type":"KNOW_THE_PRAY"}),
+      addRounds:()=>dispatch({"type":"ADD_NEW_ROUND"}),
+      knowThePrev:()=>dispatch({"type":"KNOW_THE_PREVIOUS_ROUNDS"}),
+   }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Main);
 
 const style = StyleSheet.create({
 
