@@ -1,11 +1,10 @@
 import React from "react";
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import {createAppContainer } from "react-navigation";
-import Main from "../compnents/Main.js"
 import HomeStack from "./stack.js";
 import About from './aboutstack.js';
 import SettingsStack from "./settingsStack";
-import {Ionicons , AntDesign , Entypo} from "@expo/vector-icons";
+import {AntDesign , Entypo} from "@expo/vector-icons";
 
 import * as Localization from 'expo-localization';
 import i18n from 'i18n-js';

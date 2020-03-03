@@ -1,9 +1,7 @@
 import React from "react";
 import {Text,StyleSheet,View,NativeModules } from "react-native";
-import Header from "../shared/header.js";
 import { SocialIcon } from 'react-native-elements'
 
-import * as Localization from 'expo-localization';
 import i18n from 'i18n-js';
 const locale = NativeModules.I18nManager.localeIdentifier 
 

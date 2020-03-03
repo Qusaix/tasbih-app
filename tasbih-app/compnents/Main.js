@@ -1,11 +1,9 @@
 import React from'react';
 import {Text,View,TouchableOpacity,StyleSheet,ImageBackground,AsyncStorage,ProgressBarAndroid,Vibration , Alert,NativeModules} from"react-native";
-import { Navigation } from "react-native-navigation";
 import { AntDesign} from "@expo/vector-icons";
 // import {Surface, Shape} from '@react-native-community/art';
 // import * as Progress from 'react-native-progress';
 import ProgressCircle from 'react-native-progress-circle'
-import * as Localization from 'expo-localization';
 import i18n from 'i18n-js';
 import {
    AdMobBanner,
@@ -108,16 +106,8 @@ class Main extends React.Component
        return AsyncStorage.setItem('UserCount',this.state.tasbih.toString());
    }
 
-   save_count = () =>{
-       AsyncStorage.setItem('UserCount',this.state.tasbih.toString())
-       .catch(err =>{
-          console.warn(err);
-       })
-       AsyncStorage.clear();
-
-   }
-
    componentDidMount = async ()=>{
+      this.know_language();
       // Get The User Data
      try{
       let count = await AsyncStorage.getItem("UserCount");
@@ -147,7 +137,6 @@ class Main extends React.Component
       Alert(err)
      }
 
-     this.know_language();
 
 
    }
@@ -255,6 +244,7 @@ class Main extends React.Component
 }
 function mapStateToProps(state)
 {
+   console.log(state);
    return{
       round:state.round,
       pray:state.pray,

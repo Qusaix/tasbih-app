@@ -36,13 +36,13 @@ class Settings extends React.Component
     render(){
         return(
             <View>
-                <View style={Style.section}>
+                {/* <View style={Style.section}>
                 <TouchableOpacity style={Style.sectionAction}>
                 <Text style={Style.Title} onPress={()=>this.setState({"pop_up":true})}>Add/Change The Pray</Text> 
                 </TouchableOpacity>
                 <Text style={Style.TextContent}>Your Pray: {this.state.pray}</Text>
 
-                </View>
+                </View> */}
                 <View style={Style.section}>
                 <TouchableOpacity onPress={ () => this.setState({'deleteDialog':true})} style={Style.sectionAction} >
                 <Text style={Style.Title}>Delete All Rounds</Text>
@@ -113,6 +113,5 @@ const Style = StyleSheet.create({
         fontWeight:"900",
 
     },
-    sectionAction:{
-    }
+    
 })

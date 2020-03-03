@@ -1,10 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View , Alert , ImageBackground ,AsyncStorage} from 'react-native';
-import { Main } from './compnents/Main.js';
-import {DrawerNavigatore} from './navigation/DrawerNavgation.js';
 import { NavigationContainer } from '@react-navigation/native';
 import Navgator from "./routes/drawer.js"
-import Stack from "./routes/stack.js";
 // React Redux 
 import {createStore} from "redux";
 import {Provider} from "react-redux";
@@ -53,21 +50,6 @@ export default class App extends React.Component{
   } 
 
 
-  count_tasbih = ()=>{
-     return this.setState({'tasbih':this.state.tasbih+1}) 
-  }
-
-  chose_word = (value)=>{
-    return this.setState({'chosen_word':value});
-  }
-
-  delete_count_tasbih = ()=>{
-    return this.setState({'tasbih':this.state.tasbih-1});
-  }
-
-  reset_tasbih = ()=>{
-    return this.setState({'tasbih':0});
-  }
   
   render(){
 
