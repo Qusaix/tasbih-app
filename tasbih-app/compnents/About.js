@@ -3,19 +3,6 @@ import {Text,StyleSheet,View,NativeModules } from "react-native";
 import { SocialIcon } from 'react-native-elements'
 
 import i18n from 'i18n-js';
-const locale = NativeModules.I18nManager.localeIdentifier 
-
-const en = {
-    created:'This App Created by Israra Team',
-    fallow:'You Can Fallow Us On Facebook To See Our Lates Apps'
-}
-
-const ar = {
-    created: 'تم انشاء هذا التطبيق من قبل فريق اصرار' ,
-     fallow:"لمزيد من التطبيفات تابعنا على فيسبوك" ,
-
-}
-
 
   
 
@@ -32,25 +19,7 @@ class About extends React.Component
         }
     }
 
-    UNSAFE_componentWillMount (){
-       
-        var lang_name = []; 
-
-        for(var i=0;i<locale.length;i++)
-        {
-             if(i < 2 )
-             {
-                 lang_name.push(locale[i]);
-             }
-        }
-       let chosen_lang =  lang_name.join("")
-
-        i18n.locale = chosen_lang;
-        i18n.fallbacks = true;
-
-        i18n.translations = {en,ar};
-
-    }
+  
 
     render(){
         return(

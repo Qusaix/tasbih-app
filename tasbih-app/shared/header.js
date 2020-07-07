@@ -9,7 +9,7 @@ export default function Header({navigation,tiltle}){
     }
     return(
         <View style={style.header}>
-            <MaterialIcons name="menu"  onPress={open_drawer} size={28}/>
+            <MaterialIcons name="menu" color={"#fff"} onPress={open_drawer} size={28}/>
 
             <View>
             <Text style={style.headerText}>{tiltle}</Text>

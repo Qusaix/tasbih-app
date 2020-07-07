@@ -2,7 +2,7 @@ import React from "react";
 import {View,Text,StyleSheet,TouchableOpacity,AsyncStorage} from "react-native";
 import DialogInput from 'react-native-dialog-input';
 import { Ionicons} from "@expo/vector-icons";
-
+import i18n from "../translations/translator.js";
 // REate Redux
 import {connect} from "react-redux";
 
@@ -45,7 +45,7 @@ class Settings extends React.Component
                 </View> */}
                 <View style={Style.section}>
                 <TouchableOpacity onPress={ () => this.setState({'deleteDialog':true})} style={Style.sectionAction} >
-                <Text style={Style.Title}>Delete All Rounds</Text>
+            <Text style={Style.Title}>{ i18n.t('delete_all_rounds') }</Text>
                 <Ionicons name="ios-trash" color="red" size={25} />
 
                 </TouchableOpacity>  

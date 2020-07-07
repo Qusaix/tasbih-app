@@ -7,15 +7,9 @@ import SettingsStack from "./settingsStack";
 import {AntDesign , Entypo} from "@expo/vector-icons";
 
 import * as Localization from 'expo-localization';
-import i18n from 'i18n-js';
+import i18n from '../translations/translator.js';
 
-i18n.translations = {
-  en: { appName: 'TASBIH', about:'About US', setting:"Settings"},
-  ar: { appName: 'تسبيح' , about:"من نحن",  setting:"الاعدادات"},
-};
 
-i18n.locale = Localization.locale;
-i18n.fallbacks = true;
 
 const RootDrawerNavgator = createDrawerNavigator({
   ChangeMe:{
@@ -40,7 +34,9 @@ const RootDrawerNavgator = createDrawerNavigator({
           name="setting"
           size={24}
           />
-        )
+        ),
+        
+
       }
     },
     About:{

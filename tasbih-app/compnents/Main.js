@@ -4,7 +4,8 @@ import { AntDesign} from "@expo/vector-icons";
 // import {Surface, Shape} from '@react-native-community/art';
 // import * as Progress from 'react-native-progress';
 import ProgressCircle from 'react-native-progress-circle'
-import i18n from 'i18n-js';
+// import i18n from 'i18n-js';
+import i18n from '../translations/translator.js';
 import {
    AdMobBanner,
    AdMobInterstitial,
@@ -17,18 +18,6 @@ import {
 
 
 
-const locale = NativeModules.I18nManager.localeIdentifier 
-
-const en = {
-    Day:'Day',
-    Round:'Round'
-}
-
-const ar = {
-    Day: 'اليوم' ,
-    Round:"جوله" ,
-
-}
 
 
  const Day = new Date();
@@ -46,7 +35,6 @@ class Main extends React.Component
 
          
       };
-      this.know_language();
    }
 
    count_tasbih = ()=>{
@@ -107,7 +95,6 @@ class Main extends React.Component
    }
 
    componentDidMount = async ()=>{
-      this.know_language();
       // Get The User Data
      try{
       let count = await AsyncStorage.getItem("UserCount");
@@ -132,6 +119,10 @@ class Main extends React.Component
       {
          this.setState({'round':0})
       }
+      else if( this.state.tasbih == 'NaN' )
+      {
+         this.setState({'tasbih':0})
+      }
 
      }catch(err){
       Alert(err)
@@ -140,27 +131,7 @@ class Main extends React.Component
 
 
    }
-   //Know The User Language 
-   know_language = ()=>{
-     var lang_name = []; 
-
-     for(var i=0;i<locale.length;i++)
-     {
-          if(i < 2 )
-          {
-              lang_name.push(locale[i]);
-          }
-     }
-    let chosen_lang =  lang_name.join("")
-
-     i18n.locale = chosen_lang;
-     i18n.fallbacks = true;
-
-     i18n.translations = {en,ar};
-     //End
-
-
-   }
+  
 
    // If There Is Any Error In ADMobile
    bannerError = (e)=>{
@@ -174,13 +145,20 @@ class Main extends React.Component
 
          <ImageBackground source={require("../assets/background.jpg")} style={style.container}>
             {/* <Header /> */}
+            
             <Text style={style.count_tasbih_style}>{this.state.tasbih}</Text>
+            <AdMobBanner
+               bannerSize="banner"
+               adUnitID="ca-app-pub-6984928475835712/8670511871" 
+               servePersonalizedAds 
+               onDidFailToReceiveAdWithError={this.bannerError} 
+               />
 
             {/*Round Number Circle Bar*/}
             <View style={style.ProgressBar}>
                   <ProgressCircle
                      percent={this.state.round}
-                     radius={50}
+                     radius={100}
                      borderWidth={15}
                      color="#a68b56"
                      shadowColor="#999"
@@ -193,17 +171,7 @@ class Main extends React.Component
 
             {/*The Date Circle Bar*/}
             <View style={style.ProgressBar2}>
-            <ProgressCircle
-                     percent={100}
-                     radius={50}
-                     borderWidth={5}
-                     color="#a68b56"
-                     shadowColor="#999"
-                     bgColor="#fff"
-                  >
-                     <Text size={15}>{i18n.t('Day')}</Text>
-                    <Text style={{ fontSize: 30 }}>{Day.getDate()}</Text>
-                  </ProgressCircle>
+           
 
             </View>
 
@@ -227,14 +195,6 @@ class Main extends React.Component
 
 
            </View>
-      {/* <AdMobBanner
-       bannerSize="fullBanner"
-       adUnitID="ca-app-pub-3940256099942544/6300978111"
-       testDeviceID="EMULATOR"
-       servePersonalizedAds // true or false
-       onDidFailToReceiveAdWithError={(e) => this.bannerError(e)}
-        /> */}
-     
 
          </ImageBackground >
     
@@ -289,7 +249,7 @@ const style = StyleSheet.create({
       padding:50,
       backgroundColor:'#a68b56',
       borderRadius:50,
-      marginTop:60+"%",
+     // marginTop:60+"%",
 
 
    },
@@ -300,21 +260,21 @@ const style = StyleSheet.create({
 
    },
    other_buttons:{
-      padding:15,
+      //padding:15,
       borderRadius:15,
-      marginTop:60+"%",
+    //  marginTop:60+"%",
       margin:10,
       justifyContent:"center",
    },
    ProgressBar:{
       justifyContent:"flex-start",
-      width:"100%",
+      //marginTop:"50%",
 
    },
    ProgressBar2:{
       justifyContent:"flex-end",
       flex:1,
-      backgroundColor:"red",
+     // backgroundColor:"red",
       marginLeft:65+"%"
 
    },

@@ -2,16 +2,18 @@ import React from "react";
 import { createStackNavigator } from "react-navigation-stack";
 import Header from "../shared/header.js";
 import Settings from "../compnents/Settings";
+import {AntDesign}from "@expo/vector-icons";
 
 
 const Screens = {
     Settings:{
         screen:Settings,
-        navigationOptions:({navigation})=>{
-            return {
-                headerTitle : ()=> <Header navigation = {navigation} tiltle="Settings"/>
-            }
-        }
+        navigationOptions: {
+            title: 'Settings',
+            headerTitleAlign: 'center',
+            headerLeft: ()=> <AntDesign name="setting"  size={28} />,
+          }
+        
     }
 }
 
